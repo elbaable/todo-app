@@ -41,4 +41,4 @@ npm install
 npm run dev
 ```
 
-Your frontend app should now be running on [localhost:4000](http://localhost:3000/).
+Your frontend app should now be running on [localhost:3000](http://localhost:3000/).
