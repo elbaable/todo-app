@@ -67,8 +67,8 @@ const Home = ({ tasks }: Props) => {
             height={20}
             style={{width: '30px', height: '45px', marginTop: '10px'}}
           />
-          <span className="text-customBlue ml-2">Todo</span>
-          <span className="text-customPurple ml-2">App</span>
+          <span className="text-customBlue ml-2"> Todo </span>
+          <span className="text-customPurple ml-2"> App </span>
         </div>
       </div>
       <div className="flex justify-center mt-[-26px]">
@@ -101,7 +101,7 @@ const Home = ({ tasks }: Props) => {
                 height={56}
                 style={{margin: '20px auto'}}
               />
-              <div className="text-lg text-noTaskText font-bold mb-6">You don't have any tasks registered yet.</div>
+              <div className="text-lg text-noTaskText font-bold mb-6">You don&apos;t have any tasks registered yet.</div>
               <div className="text-lg text-noTaskText font-middle">Create tasks and organize your to-do items.</div>
           </div>
         ) : (

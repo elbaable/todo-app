@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Task = {
   id: number;
@@ -30,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
 const TaskForm = ({ task }: Props) => {
   const [title, setTitle] = useState(task?.title || '');
-  const [color, setColor] = useState(task?.color || 'blue');
+  const [color, setColor] = useState(task?.color || '#FF3B30');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,44 +52,83 @@ const TaskForm = ({ task }: Props) => {
     }
   };
 
-  console.log(task)
-
   return (
-    <div className="p-8">
-      <h1 className="text-3xl mb-4">{task ? 'Edit Task' : 'Create Task'}</h1>
-
-      <Link href="/">
-        <button className="p-2 bg-gray-500 text-white rounded mb-4">
-          Home
-        </button>
-      </Link>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block">Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="input input-bordered w-full"
-            required
+    <div className="bg-backgroundColor">
+      <div className="h-[200px] bg-headerColor">
+        <div className="p-48px text-[40px] font-extraHeavy flex justify-center align-center">
+          <Image
+            src="/img/rocket.png"
+            alt="Todo App Rocket"
+            width={20}
+            height={20}
+            style={{width: '30px', height: '45px', marginTop: '10px'}}
           />
+          <span className="text-customBlue ml-2">Todo</span>
+          <span className="text-customPurple ml-2">App</span>
         </div>
-        <div>
-          <label className="block">Color</label>
-          <select
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            className="input input-bordered w-full"
-          >
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-            <option value="red">Red</option>
-          </select>
-        </div>
-        <button type="submit" className="btn btn-primary mt-4">
-          {task ? 'Save' : 'Add Task'}
-        </button>
-      </form>
+      </div>
+      <div className="w-[736px] min-h-[511px] m-auto mt-[26px] mb-[18px] py-10">
+        <Link href="/">
+          <button className="w-[24px]">
+            <Image
+              src="/img/arrow-left.png"
+              alt="Todo App Rocket"
+              width={50}
+              height={50}
+            />
+          </button>
+        </Link>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="text-customBlue">Title</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="input bg-inputBox w-full rounded-[8px] h-[52px] text-inputText p-5 mt-2"
+              placeholder="Ex. Brush your teeth"
+              required
+            />
+          </div>
+          <div>
+            <label className="text-customBlue">Color</label>
+            <div className="flex space-x-4">
+              {['#FF3B30', '#FF9500', '#FFCC00', '#34C759', '#007AFF', '#5856D6', '#AF52DE', '#FF2D55', '#A2845E'].map((colorOption) => (
+                <div
+                  key={colorOption}
+                  onClick={() => setColor(colorOption)}
+                  className={`w-[52px] h-[52px] rounded-full cursor-pointer ${
+                    color === colorOption ? 'border-2 border-white' : ''
+                  }`}
+                  style={{
+                    backgroundColor: colorOption,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <button type="submit" className="btn btn-primary mt-4">
+            <div className="btn flex justify-center items-center bg-customBtn w-[736px] h-[52px] rounded-[8px] text-white text-[14px]">
+              <span className="mr-2">{task ? 'Save' : 'Add Task'}</span>
+              {task ? (
+                <Image
+                src="/img/save.png"
+                alt="Add a new task"
+                width={20}
+                height={20}
+              />
+              ) : (
+                <Image
+                  src="/img/add.png"
+                  alt="Add a new task"
+                  width={20}
+                  height={20}
+                />
+              )}
+            </div>
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

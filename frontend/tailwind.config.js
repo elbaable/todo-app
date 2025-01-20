@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "pages/**/*.{js,ts,jsx,tsx}",
-    "components/**/*.{js,ts,jsx,tsx}",
+    "pages/**/**.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -15,6 +14,8 @@ module.exports = {
         customBadge: "#333333",
         customBadgeText: "#D9D9D9",
         noTaskText: "#808080",
+        inputBox: "#262626",
+        inputText: "#F2F2F2",
       },
       spacing: {
         "16px": "16px",
